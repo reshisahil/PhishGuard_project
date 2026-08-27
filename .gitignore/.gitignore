@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+
+.venv/
+venv/
+env/
+
+dataset/Dataset.csv
+dataset/Dataset_clean.csv
