@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNEXUS PhishGuard — ML-Based Phishing Detection</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Radial Background Glows -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Sticky Header & Navbar -->
+    <header class="header">
+        <div class="container navbar-container">
+            <a href="#home" class="logo">
+                <svg class="logo-icon" width="28" height="32" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 0L0 6V15C0 23.3 5.97 31.02 14 32C22.03 31.02 28 23.3 28 15V6L14 0Z" fill="url(#logoGrad)" />
+                    <path d="M14 4.5L4 8.78V15C4 20.85 8.27 26.24 14 27.5C19.73 26.24 24 20.85 24 15V8.78L14 4.5Z" fill="#080b11" />
+                    <path d="M14 8L7 11V15C7 19.3 10.02 23.18 14 24.3V8Z" fill="url(#accentGrad)" />
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0" y1="0" x2="28" y2="32" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#00f0ff" />
+                            <stop offset="1" stop-color="#7c3aed" />
+                        </linearGradient>
+                        <linearGradient id="accentGrad" x1="7" y1="8" x2="14" y2="24.3" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#00f0ff" />
+                            <stop offset="1" stop-color="#0066ff" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="logo-text">
+                    <span class="logo-main">SYNEXUS</span>
+                    <span class="logo-sub">PHISHGUARD</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#technology" class="nav-link">Technology</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                </ul>
+            </nav>
+
+            <!-- Nav Actions -->
+            <div class="nav-actions">
+                <a href="#scanner" class="btn btn-primary btn-nav-action">Analyze URL</a>
+                <button class="hamburger-btn" aria-label="Toggle Menu" id="hamburger-btn">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Slide-over Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <ul class="mobile-nav-list">
+            <li><a href="#home" class="mobile-link">Home</a></li>
+            <li><a href="#how-it-works" class="mobile-link">How It Works</a></li>
+            <li><a href="#features" class="mobile-link">Features</a></li>
+            <li><a href="#technology" class="mobile-link">Technology</a></li>
+            <li><a href="#about" class="mobile-link">About</a></li>
+            <li><a href="#scanner" class="mobile-link btn btn-primary text-center">Analyze URL</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-content text-center">
+                    <div class="cyber-badge inline-flex align-center">
+                        <span class="pulse-dot"></span>
+                        <span class="badge-text">SYSTEM STATUS: OPTIMIZED</span>
+                    </div>
+                    <h1 class="hero-title">Detect Suspicious URLs<br><span class="accent-text">Before You Click</span></h1>
+                    <p class="hero-subtitle">Analyze URL patterns, evaluate risk scores, and identify links that may resemble phishing attempts in real-time.</p>
+                </div>
+
+                <!-- URL Analyzer Card Interface -->
+                <div id="scanner" class="scanner-card glass-panel reveal">
+                    <div class="scanner-header border-bottom">
+                        <div class="scanner-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="scanner-title">SYNEXUS URL RISK ASSESSOR</div>
+                        <div class="scanner-model-tag">MODEL: V3.1.2-ALPHA</div>
+                    </div>
+
+                    <div class="scanner-body">
+                        <!-- Main Input Area -->
+                        <div id="scan-input-view" class="scan-view">
+                            <form id="url-form" class="url-form">
+                                <div class="input-group">
+                                    <div class="input-icon-wrapper">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="url-input-icon"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                    </div>
+                                    <input type="text" id="url-input" class="url-input-field" placeholder="https://example.com/login" required autocomplete="off">
+                                    <button type="submit" class="btn btn-accent btn-scan">
+                                        <span class="btn-scan-text">Analyze URL</span>
+                                        <svg class="btn-scan-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                    </button>
+                                </div>
+                            </form>
+                            <div class="scanner-tips flex justify-between">
+                                <span class="tip-text"><span class="accent-text">💡 Tip:</span> Try pasting long URLs, IP address URLs, or normal domains to test heuristics.</span>
+                                <span class="model-desc">ML-powered URL risk analysis</span>
+                            </div>
+                        </div>
+
+                        <!-- Scan Animation Loading Area -->
+                        <div id="scan-loading-view" class="scan-view hidden">
+                            <div class="cyber-scanner-loader">
+                                <div class="scanning-laser"></div>
+                                <div class="scanning-circle-wrap">
+                                    <div class="scanning-circle"></div>
+                                    <div class="scanning-circle-inner"></div>
+                                    <svg class="scanning-shield" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="scan-progress-log">
+                                <div class="progress-step-item" id="step-1">
+                                    <span class="step-indicator"></span>
+                                    <span class="step-label">Analyzing URL Domain & Protocol...</span>
+                                    <span class="step-status">Pending</span>
+                                </div>
+                                <div class="progress-step-item" id="step-2">
+                                    <span class="step-indicator"></span>
+                                    <span class="step-label">Extracting Lexical and Structural Features...</span>
+                                    <span class="step-status">Pending</span>
+                                </div>
+                                <div class="progress-step-item" id="step-3">
+                                    <span class="step-indicator"></span>
+                                    <span class="step-label">Evaluating Heuristics and ML Vector...</span>
+                                    <span class="step-status">Pending</span>
+                                </div>
+                                <div class="progress-step-item" id="step-4">
+                                    <span class="step-indicator"></span>
+                                    <span class="step-label">Generating Security Risk Report...</span>
+                                    <span class="step-status">Pending</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Results View -->
+                        <div id="scan-result-view" class="scan-view hidden">
+                            <div class="result-layout">
+                                <!-- Status Block -->
+                                <div class="result-main-card" id="result-status-card">
+                                    <div class="result-badge-container">
+                                        <div class="threat-icon-glow">
+                                            <svg id="result-icon-phishing" class="result-big-icon hidden" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                            <svg id="result-icon-legitimate" class="result-big-icon hidden" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 11 11 13 15 9"></polyline></svg>
+                                        </div>
+                                        <div class="result-verdict-title" id="result-verdict">Potentially Phishing</div>
+                                    </div>
+                                    <div class="result-meta">
+                                        <div class="meta-row">
+                                            <span class="meta-label">Analyzed URL:</span>
+                                            <span class="meta-val url-highlight" id="result-url">https://example-login-update.com</span>
+                                        </div>
+                                        <div class="meta-row inline-flex-justify-between">
+                                            <div class="meta-subitem">
+                                                <span class="meta-label">Risk Level:</span>
+                                                <span class="risk-badge badge-high" id="result-risk-level">HIGH</span>
+                                            </div>
+                                            <div class="meta-subitem">
+                                                <span class="meta-label">Confidence:</span>
+                                                <span class="confidence-val" id="result-confidence">87%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="re-scan-wrapper">
+                                        <button class="btn btn-outline btn-full-width" id="btn-re-scan">Scan Another URL</button>
+                                    </div>
+                                </div>
+
+                                <!-- Gauge & Score -->
+                                <div class="result-visual-card">
+                                    <div class="radial-gauge-container">
+                                        <svg class="radial-gauge-svg" width="160" height="160" viewBox="0 0 100 100">
+                                            <circle class="gauge-bg" cx="50" cy="50" r="40" stroke-width="8" fill="transparent"/>
+                                            <circle class="gauge-fill" id="gauge-fill-ring" cx="50" cy="50" r="40" stroke-width="8" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="251.2"/>
+                                            <text class="gauge-percent" id="gauge-text" x="50" y="55" text-anchor="middle">0%</text>
+                                            <text class="gauge-label" x="50" y="72" text-anchor="middle">Confidence</text>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Heuristic Features Breakdown -->
+                            <div class="features-breakdown border-top">
+                                <h4 class="breakdown-title">Feature Indicators Dashboard</h4>
+                                <div class="features-grid-small">
+                                    <div class="feature-item-small" id="indicator-length">
+                                        <div class="item-label-row">
+                                            <span class="feature-label">URL Length</span>
+                                            <span class="feature-badge" id="badge-length">Safe</span>
+                                        </div>
+                                        <div class="item-value" id="val-length">42 characters</div>
+                                    </div>
+                                    <div class="feature-item-small" id="indicator-subdomains">
+                                        <div class="item-label-row">
+                                            <span class="feature-label">Subdomains</span>
+                                            <span class="feature-badge" id="badge-subdomains">Safe</span>
+                                        </div>
+                                        <div class="item-value" id="val-subdomains">1 (Low)</div>
+                                    </div>
+                                    <div class="feature-item-small" id="indicator-ip">
+                                        <div class="item-label-row">
+                                            <span class="feature-label">IP Address Domain</span>
+                                            <span class="feature-badge" id="badge-ip">Safe</span>
+                                        </div>
+                                        <div class="item-value" id="val-ip">No</div>
+                                    </div>
+                                    <div class="feature-item-small" id="indicator-https">
+                                        <div class="item-label-row">
+                                            <span class="feature-label">HTTPS Status</span>
+                                            <span class="feature-badge" id="badge-https">Safe</span>
+                                        </div>
+                                        <div class="item-value" id="val-https">Yes (Secure)</div>
+                                    </div>
+                                    <div class="feature-item-small" id="indicator-specials">
+                                        <div class="item-label-row">
+                                            <span class="feature-label">Special Characters</span>
+                                            <span class="feature-badge" id="badge-specials">Safe</span>
+                                        </div>
+                                        <div class="item-value" id="val-specials">1 symbol</div>
+                                    </div>
+                                    <div class="feature-item-small" id="indicator-pattern">
+                                        <div class="item-label-row">
+                                            <span class="feature-label">Suspicious Heuristics</span>
+                                            <span class="feature-badge" id="badge-pattern">Safe</span>
+                                        </div>
+                                        <div class="item-value" id="val-pattern">None detected</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="section bg-dim-dark">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">How It Works</h2>
+                    <p class="section-subtitle">PhishGuard breaks down URLs into structural elements to assess credibility through local analysis heuristics.</p>
+                </div>
+
+                <div class="steps-timeline">
+                    <!-- Step 1 -->
+                    <div class="timeline-step glass-panel reveal">
+                        <div class="step-num-glow">01</div>
+                        <h3 class="step-title">Enter URL</h3>
+                        <p class="step-desc">Submit a suspicious link or domain into the analyzer card above to trigger immediate inspection.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="timeline-step glass-panel reveal">
+                        <div class="step-num-glow">02</div>
+                        <h3 class="step-title">Extract Features</h3>
+                        <p class="step-desc">The analyzer extracts measurable URL characteristics including length, subdomain depth, protocols, and suspicious anchors.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="timeline-step glass-panel reveal">
+                        <div class="step-num-glow">03</div>
+                        <h3 class="step-title">ML Heuristics Prediction</h3>
+                        <p class="step-desc">Extracted feature scores are mapped against classification thresholds derived from pre-trained ML URL models.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="timeline-step glass-panel reveal">
+                        <div class="step-num-glow">04</div>
+                        <h3 class="step-title">Risk Result</h3>
+                        <p class="step-desc">Receive a risk-oriented score dashboard showcasing individual indicators, risk badges, and the security verdict.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Features Analyzed</h2>
+                    <p class="section-subtitle">PhishGuard evaluates critical indicators commonly altered in phishing links and social engineering designs.</p>
+                </div>
+
+                <div class="features-grid">
+                    <!-- Feature 1 -->
+                    <div class="feature-card glass-panel hover-glow reveal">
+                        <div class="feature-icon-box cyan-glow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+                        </div>
+                        <h3 class="feature-title">URL Length</h3>
+                        <p class="feature-desc">Phishing attempts often utilize extremely long URLs to hide suspicious domain subfolders or mimic legitimate structures.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-card glass-panel hover-glow reveal">
+                        <div class="feature-icon-box purple-glow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        </div>
+                        <h3 class="feature-title">Special Characters</h3>
+                        <p class="feature-desc">Frequent usage of special characters like <code>@</code>, <code>?</code>, <code>=</code>, and <code>-</code> can indicate redirect paths or obfuscation tactics.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-card glass-panel hover-glow reveal">
+                        <div class="feature-icon-box cyan-glow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+                        </div>
+                        <h3 class="feature-title">Subdomains</h3>
+                        <p class="feature-desc">Attackers nest multiple subdomains (e.g. <code>login.paypal.com.secure.net</code>) to trick users into believing the link is genuine.</p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="feature-card glass-panel hover-glow reveal">
+                        <div class="feature-icon-box purple-glow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="22" y2="7"></line><line x1="2" y1="17" x2="22" y2="17"></line></svg>
+                        </div>
+                        <h3 class="feature-title">IP Instead of Domain</h3>
+                        <p class="feature-desc">Using raw IP addresses (e.g. <code>http://192.168.1.1/login</code>) bypassing Domain Name System (DNS) naming is highly indicative of malicious setups.</p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="feature-card glass-panel hover-glow reveal">
+                        <div class="feature-icon-box cyan-glow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        </div>
+                        <h3 class="feature-title">HTTPS Security</h3>
+                        <p class="feature-desc">While HTTPS encrypts communications, modern phishing sites frequently use free SSL certificates to build a false sense of security.</p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="feature-card glass-panel hover-glow reveal">
+                        <div class="feature-icon-box purple-glow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                        </div>
+                        <h3 class="feature-title">Suspicious Patterns</h3>
+                        <p class="feature-desc">PhishGuard scans for structural markers and keyword patterns typical of urgency-based credentials harvesting schemes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Section -->
+        <section id="technology" class="section bg-dim-dark">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Associated Stack & Technology</h2>
+                    <p class="section-subtitle">Although this prototype is a frontend demonstration, the complete SYNEXUS PhishGuard engine involves backend ML components.</p>
+                </div>
+
+                <div class="tech-grid">
+                    <!-- Tech 1 -->
+                    <div class="tech-card glass-panel reveal">
+                        <div class="tech-icon-circle python-blue">
+                            <span class="tech-symbol font-mono">Py</span>
+                        </div>
+                        <div class="tech-name">Python</div>
+                        <div class="tech-role font-mono">Backend Modeling</div>
+                    </div>
+                    <!-- Tech 2 -->
+                    <div class="tech-card glass-panel reveal">
+                        <div class="tech-icon-circle pandas-logo">
+                            <span class="tech-symbol font-mono">Pd</span>
+                        </div>
+                        <div class="tech-name">pandas</div>
+                        <div class="tech-role font-mono">Data Wrangling</div>
+                    </div>
+                    <!-- Tech 3 -->
+                    <div class="tech-card glass-panel reveal">
+                        <div class="tech-icon-circle numpy-logo">
+                            <span class="tech-symbol font-mono">Np</span>
+                        </div>
+                        <div class="tech-name">NumPy</div>
+                        <div class="tech-role font-mono">Vector Math</div>
+                    </div>
+                    <!-- Tech 4 -->
+                    <div class="tech-card glass-panel reveal">
+                        <div class="tech-icon-circle sklearn-logo">
+                            <span class="tech-symbol font-mono">Sk</span>
+                        </div>
+                        <div class="tech-name">scikit-learn</div>
+                        <div class="tech-role font-mono">ML Training</div>
+                    </div>
+                    <!-- Tech 5 -->
+                    <div class="tech-card glass-panel reveal">
+                        <div class="tech-icon-circle api-logo">
+                            <span class="tech-symbol font-mono">API</span>
+                        </div>
+                        <div class="tech-name">Flask / FastAPI</div>
+                        <div class="tech-role font-mono">API Integration</div>
+                    </div>
+                    <!-- Tech 6 -->
+                    <div class="tech-card glass-panel reveal">
+                        <div class="tech-icon-circle html-logo">
+                            <span class="tech-symbol font-mono">5</span>
+                        </div>
+                        <div class="tech-name">HTML</div>
+                        <div class="tech-role font-mono">Structure Markup</div>
+                    </div>
+                    <!-- Tech 7 -->
+                    <div class="tech-card glass-panel reveal">
+                        <div class="tech-icon-circle css-logo">
+                            <span class="tech-symbol font-mono">CSS</span>
+                        </div>
+                        <div class="tech-name">CSS</div>
+                        <div class="tech-role font-mono">Styling Layout</div>
+                    </div>
+                    <!-- Tech 8 -->
+                    <div class="tech-card glass-panel reveal">
+                        <div class="tech-icon-circle js-logo">
+                            <span class="tech-symbol font-mono">JS</span>
+                        </div>
+                        <div class="tech-name">JavaScript</div>
+                        <div class="tech-role font-mono">Interactive Logic</div>
+                    </div>
+                    <!-- Tech 9 -->
+                    <div class="tech-card glass-panel reveal">
+                        <div class="tech-icon-circle git-logo">
+                            <span class="tech-symbol font-mono">Git</span>
+                        </div>
+                        <div class="tech-name">Git</div>
+                        <div class="tech-role font-mono">Version Control</div>
+                    </div>
+                    <!-- Tech 10 -->
+                    <div class="tech-card glass-panel reveal">
+                        <div class="tech-icon-circle github-logo">
+                            <span class="tech-symbol font-mono">GH</span>
+                        </div>
+                        <div class="tech-name">GitHub</div>
+                        <div class="tech-role font-mono">Repository Host</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Dashboard Preview Section -->
+        <section id="dashboard" class="section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">PhishGuard Security Analysis</h2>
+                    <p class="section-subtitle">Explore live aggregate status and threat metrics parsed directly on-device.</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Dashboard Statistics Card -->
+                    <div class="dashboard-panel glass-panel reveal" id="stats-panel">
+                        <h3 class="panel-title border-bottom flex items-center justify-between">
+                            <span>Aggregate Statistics</span>
+                            <span class="cyber-badge font-mono pulse-dot">LIVE FEED</span>
+                        </h3>
+                        <div class="stats-counters-grid">
+                            <div class="stat-box">
+                                <span class="stat-number accent-text" id="stat-total">1,248</span>
+                                <span class="stat-label">URLs Analyzed</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number threat-red" id="stat-threats">342</span>
+                                <span class="stat-label">Threats Logged</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number legit-green" id="stat-legit">906</span>
+                                <span class="stat-label">Legitimate URLs</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number text-purple" id="stat-confidence">94.7%</span>
+                                <span class="stat-label">Mean Confidence</span>
+                            </div>
+                        </div>
+
+                        <!-- Mini Canvas Chart -->
+                        <div class="dashboard-chart-wrapper border-top">
+                            <div class="chart-header flex items-center justify-between mb-15">
+                                <span class="chart-title">Phishing vs Legitimate Distribution</span>
+                                <div class="chart-legends">
+                                    <span class="legend"><span class="legend-dot green"></span>Legitimate</span>
+                                    <span class="legend"><span class="legend-dot red"></span>Threats</span>
+                                </div>
+                            </div>
+                            <!-- Canvas Chart -->
+                            <div class="canvas-holder">
+                                <canvas id="threatDistributionChart" width="400" height="150"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Scans Card -->
+                    <div class="dashboard-panel glass-panel reveal" id="history-panel">
+                        <h3 class="panel-title border-bottom flex items-center justify-between">
+                            <span>Recent Scan Registry</span>
+                            <button class="btn-clear-history font-mono" id="btn-clear-history">Clear Log</button>
+                        </h3>
+                        <div class="history-list-wrapper">
+                            <div class="history-scroll" id="recent-scans-list">
+                                <!-- Populated dynamically by script.js -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Illustration Section -->
+        <section id="about" class="section bg-dim-dark border-top">
+            <div class="container about-container">
+                <div class="about-content reveal">
+                    <h2 class="section-title">About SYNEXUS PhishGuard</h2>
+                    <p class="about-text">
+                        PhishGuard is an educational cybersecurity MVP designed to analyze measurable URL characteristics and provide an understandable, risk-oriented phishing prediction. It operates as an on-device heuristic engine to showcase how structural URL patterns can be mapped to machine learning features.
+                    </p>
+                    <p class="about-text">
+                        By checking parameters like subdomains, entropy indicators, SSL setups, and URL length, PhishGuard mimics the feature-extraction pipeline utilized in real-world ML spam and phishing detectors.
+                    </p>
+                    <!-- Disclaimer Card Inside About -->
+                    <div class="disclaimer-box glass-panel reveal">
+                        <div class="disclaimer-header">
+                            <svg class="disclaimer-icon text-amber" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            <span class="disclaimer-title">Disclaimer</span>
+                        </div>
+                        <p class="disclaimer-text">
+                            PhishGuard provides risk-oriented predictions and cannot guarantee that a URL is safe or malicious. It is an educational tool and should not replace antivirus software or professional threat intelligence.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="about-graphic-container reveal flex items-center justify-center">
+                    <!-- Complex Animated SVG Shield / Radar -->
+                    <div class="cyber-shield-graphic">
+                        <svg class="shield-svg" width="300" height="300" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="radar-circle rc-1" cx="100" cy="100" r="90" stroke="rgba(0, 240, 255, 0.1)" stroke-width="1" stroke-dasharray="4 4" />
+                            <circle class="radar-circle rc-2" cx="100" cy="100" r="70" stroke="rgba(124, 58, 237, 0.15)" stroke-width="1" />
+                            <circle class="radar-circle rc-3" cx="100" cy="100" r="50" stroke="rgba(0, 240, 255, 0.2)" stroke-width="1.5" stroke-dasharray="20 10" />
+                            <path class="shield-outline" d="M100 25L40 45V100C40 155 65.6 206.8 100 215C134.4 206.8 160 155 160 100V45L100 25Z" stroke="url(#shieldGrad)" stroke-width="2" fill="url(#shieldFillGrad)" />
+                            <path class="shield-grid" d="M100 25V215M40 100H160M60 70H140M60 130H140M60 160H140" stroke="rgba(0, 240, 255, 0.15)" stroke-width="1" />
+                            <circle class="scanning-node" cx="100" cy="80" r="4" fill="#00f0ff" />
+                            <circle class="scanning-node" cx="65" cy="120" r="4" fill="#7c3aed" />
+                            <circle class="scanning-node" cx="135" cy="140" r="4" fill="#00f0ff" />
+                            <defs>
+                                <linearGradient id="shieldGrad" x1="40" y1="25" x2="160" y2="215" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#00f0ff" />
+                                    <stop offset="0.5" stop-color="#7c3aed" />
+                                    <stop offset="1" stop-color="#00f0ff" />
+                                </linearGradient>
+                                <linearGradient id="shieldFillGrad" x1="40" y1="25" x2="160" y2="215" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="rgba(0, 240, 255, 0.05)" />
+                                    <stop offset="1" stop-color="rgba(124, 58, 237, 0.02)" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <div class="logo">
+                    <svg class="logo-icon" width="20" height="24" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 0L0 6V15C0 23.3 5.97 31.02 14 32C22.03 31.02 28 23.3 28 15V6L14 0Z" fill="url(#footerLogoGrad)" />
+                        <defs>
+                            <linearGradient id="footerLogoGrad" x1="0" y1="0" x2="28" y2="32" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#00f0ff" />
+                                <stop offset="1" stop-color="#7c3aed" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="logo-text">
+                        <span class="logo-main text-small">SYNEXUS</span>
+                        <span class="logo-sub text-tiny">PHISHGUARD</span>
+                    </div>
+                </div>
+                <p class="footer-desc mt-15">ML-Based Phishing URL Detection System</p>
+                <div class="footer-tag">Educational Cybersecurity MVP</div>
+            </div>
+
+            <div class="footer-links-wrapper">
+                <h4 class="footer-title">Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#technology">Technology</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom border-top text-center">
+            <div class="container">
+                <p class="copyright">&copy; 2026 SYNEXUS PhishGuard. Built as a high-fidelity cybersecurity prototype. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
