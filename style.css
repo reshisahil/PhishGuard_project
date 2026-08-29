@@ -1876,11 +1876,3 @@ svg defs {
     .stats-counters-grid {
         grid-template-columns: 1fr;
     }
-/* Fix URL Scanner height */
-#scanner {
-    min-height: 420px;
-}
-
-#scanner .scanner-body {
-    min-height: 300px;
-}
