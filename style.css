@@ -1876,11 +1876,6 @@ svg defs {
     .stats-counters-grid {
         grid-template-columns: 1fr;
     }
-}
-/* URL Analyzer navigation target */
-#scanner {
-    scroll-margin-top: 110px;
-}
 /* Fix URL Scanner height */
 #scanner {
     min-height: 420px;
