@@ -1877,7 +1877,7 @@ svg defs {
         grid-template-columns: 1fr;
     }
 }
-/* Fix Analyze URL navigation */
+/* URL Analyzer navigation target */
 #scanner {
-    scroll-margin-top: 100px;
+    scroll-margin-top: 110px;
 }
