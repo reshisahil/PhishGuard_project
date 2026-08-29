@@ -63,6 +63,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const canvas = document.getElementById('threatDistributionChart');
 
+    // ============================================================
+// ANALYZE URL NAVIGATION
+// ============================================================
+
+document.querySelectorAll('a[href="#scanner"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const scanner = document.getElementById('scanner');
+
+        if (scanner) {
+            scanner.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
 
     // ============================================================
     // 2. SVG GRADIENTS
