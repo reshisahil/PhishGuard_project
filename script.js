@@ -138,8 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.remove('active');
 
             if (
-                link.getAttribute('href') ===
-                `#${currentSectionId}`
+                 link.getAttribute('href') ===
+                 '#' + currentSectionId
             ) {
 
                 link.classList.add('active');
