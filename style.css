@@ -1881,3 +1881,11 @@ svg defs {
 #scanner {
     scroll-margin-top: 110px;
 }
+/* Fix URL Scanner height */
+#scanner {
+    min-height: 420px;
+}
+
+#scanner .scanner-body {
+    min-height: 300px;
+}
