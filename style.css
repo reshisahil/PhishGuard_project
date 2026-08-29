@@ -1877,3 +1877,7 @@ svg defs {
         grid-template-columns: 1fr;
     }
 }
+/* Fix Analyze URL navigation */
+#scanner {
+    scroll-margin-top: 100px;
+}
